@@ -1,5 +1,5 @@
 const TelegramBot = require('node-telegram-bot-api')
-const apiKey = ''
+const apiKey = process.env.TELEGRAM_KEY
 const app = require('./src/app')
 const bot = new TelegramBot(apiKey, {polling: true})
 
