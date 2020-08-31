@@ -14,7 +14,7 @@ module.exports = {
                 })
             })
     },
-    routes: (printInConsole = true) => {
+    routes: (printInConsole = false) => {
         if(printInConsole) {
             routes.forEach(route => {
                 console.table(route)
