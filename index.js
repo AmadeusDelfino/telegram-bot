@@ -1,4 +1,5 @@
 const TelegramBot = require('node-telegram-bot-api')
+require('dotenv').config()
 const apiKey = process.env.TELEGRAM_KEY
 const app = require('./src/app')
 const bot = new TelegramBot(apiKey, {polling: true})
