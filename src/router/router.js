@@ -4,7 +4,7 @@ const path = require('path')
 
 module.exports = {
     init: () => {
-        const routesFolder = path.join(__dirname, '..', 'routes')
+        const routesFolder = path.join(process.env.ROUTES_DIRECTORY)
         fs
             .readdirSync(routesFolder)
             .forEach(file => {
