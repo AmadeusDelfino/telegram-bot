@@ -37,3 +37,10 @@ module.exports = [
 Por padrão, todos os métodos que serão executados devem receber como parâmetro a mensagem enviada pelo bot. Para saber
 tudo que é possível fazer com a mensagem, veja esse repositório: 
 [https://github.com/yagop/node-telegram-bot-api](https://github.com/yagop/node-telegram-bot-api)
+
+## Todo
+- [ ] Criar workflow de respostas
+- [ ] Permitir fazer match de rotas/actions via regex
+- [ ] Criar sistema de log de erros da aplicação
+- [ ] Habilitar webhook 
+- [ ] Escalonamento horizontal
