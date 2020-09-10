@@ -1,14 +1,14 @@
-const controller = require('./../actions/IndexController')
+import IndexController from "../actions/IndexController";
 
-module.exports = [
+export default [
     {
         name: 'ping',
-        action: controller.ping,
+        action: IndexController.ping,
         description: 'Apenas um pong',
     },
     {
         name: 'help',
-        action: controller.help,
+        action: IndexController.help,
         description: 'Lista todos os comandos disponíveis'
     }
 ]
