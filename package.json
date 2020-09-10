@@ -5,7 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "dev": "ts-node-dev --transpile-only index.ts",
-    "test": "mocha -r ts-node/register test/*"
+    "test": "mocha -r ts-node/register test/*",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
