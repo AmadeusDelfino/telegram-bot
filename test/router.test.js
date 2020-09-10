@@ -1,7 +1,7 @@
 const chai = require('chai')
 const assert = chai.assert
 const path = require('path')
-const router = require('./../src/router/router')
+const router = require('../src/router/router')
 
 process.env.ROUTES_DIRECTORY = path.join(__dirname, 'stubs', 'routes')
 
