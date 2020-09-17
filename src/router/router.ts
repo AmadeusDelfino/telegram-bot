@@ -16,6 +16,10 @@ class Router {
 
     public init() {
         const routesFolder: string = process.env.ROUTES_DIRECTORY || ''
+        this.loadRoutesFromFolder(routesFolder)
+    }
+
+    public loadRoutesFromFolder(routesFolder: string) {
         readdirSync(routesFolder)
             .forEach(file => {
                 const route = require(pathResolve(process.cwd(), routesFolder + '/' + file))
@@ -60,7 +64,7 @@ class Router {
         }
 
         if (context.hasNextFlow()) {
-            const response: {response: string, data: any} = await awaitIfNecessary(context.getNextFlow()(msg, context.data))
+            const response: { response: string, data: any } = await awaitIfNecessary(context.getNextFlow()(msg, context.data))
             context.setData(response.data)
             context.incrementStep()
             this.currentWorkflow.set(msg.chat.id, context)
