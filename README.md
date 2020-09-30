@@ -77,6 +77,7 @@ nenhum erro no meio do flow que vai ser necessário um rollback de qualquer oper
 ## Todo
 - [x] Criar workflow de respostas
 - [ ] Permitir fazer match de rotas/actions via regex
+- [x] Permitir fazer indicações de rotas por similaridade quando não houver nenhum candidato objetivo
 - [ ] Criar sistema de log de erros da aplicação
 - [ ] Habilitar webhook 
 - [ ] Escalonamento horizontal
