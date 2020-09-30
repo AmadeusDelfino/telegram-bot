@@ -5,6 +5,7 @@ import {Message} from "node-telegram-bot-api"
 import isFlow from "../utils/isFlow"
 import awaitIfNecessary from "../utils/awaitIfNecessary"
 import FlowContext from "./FlowContext"
+import {findBestMatch} from 'string-similarity'
 
 class Router {
     private availableRoutes: Map<string, Route> = new Map()
@@ -30,7 +31,6 @@ class Router {
     }
 
     public match(router: string): Route {
-        router = router.replace('/', '')
         if (!this.availableRoutes.has(router)) throw new Error('Action ' + router + ' not found')
 
         // @ts-ignore
@@ -38,11 +38,17 @@ class Router {
     }
 
     public executeRoute(msg: Message) {
+        let routeAction = null
+        const actionRequested = msg.text?.split(' ')[0].replace('/', '') || ''
         if (isFlow(msg.text)) {
             return this.executeFlow(msg)
         }
+        try{
+            routeAction = this.match(actionRequested)
+        } catch (e) {
+            return this.handleSimilarityRoute(actionRequested)
+        }
 
-        const routeAction = this.match(msg.text?.split(' ')[0] || '')
         if (routeAction.flow !== undefined) {
             return this.executeInitFlow(msg, routeAction)
         }
@@ -73,6 +79,21 @@ class Router {
         }
 
         return 'Você já fez tudo que era necessário com esse comando. Tente outro!'
+    }
+
+    private handleSimilarityRoute(action: string): string {
+        const routes: string[] = []
+
+        for (let entry of Array.from(this.availableRoutes.entries())) {
+            routes.push(entry[0])
+        }
+
+        const bestMatch = findBestMatch(action, routes).bestMatch
+        if(bestMatch.rating > 0.7) {
+            return "Provavelmente você quis dizer /" + bestMatch.target
+        }
+
+        return 'Ação não encontrada'
     }
 }
 
